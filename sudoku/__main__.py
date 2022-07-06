@@ -90,12 +90,12 @@ def main():
 
                 #x = random.randint(1, COLS - 1)
                 #y = random.randint(1, ROWS - 1)
-                position = Point(n, j)
+                position = Point(n + 1, j + 1)
                 position = position.scale(CELL_SIZE)
 
-                r = random.randint(0, 255)
-                g = random.randint(0, 255)
-                b = random.randint(0, 255)
+                r = (255)
+                g = (255)
+                b = (255)
                 color = Color(r, g, b)
 
                 artifact = Artifact()
