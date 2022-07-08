@@ -45,3 +45,40 @@ class KeyboardService:
         direction = direction.scale(self._cell_size)
         
         return direction
+    
+    def get_number(self):
+        """Gets the selected number based on the currently pressed keys.
+
+        Returns:
+            Int: number.
+        """
+        number = ""
+        
+        if pyray.is_key_down(pyray.KEY_ONE):
+            number = 1
+        
+        if pyray.is_key_down(pyray.KEY_TWO):
+            number = 2
+        
+        if pyray.is_key_down(pyray.KEY_THREE):
+            number = 3
+        
+        if pyray.is_key_down(pyray.KEY_FOUR):
+            number = 4
+
+        if pyray.is_key_down(pyray.KEY_FIVE):
+            number = 5
+        
+        if pyray.is_key_down(pyray.KEY_SIX):
+            number = 6
+        
+        if pyray.is_key_down(pyray.KEY_SEVEN):
+            number = 7
+        
+        if pyray.is_key_down(pyray.KEY_EIGHT):
+            number = 8
+
+        if pyray.is_key_down(pyray.KEY_NINE):
+            number = 9
+
+        return str(number)

@@ -11,6 +11,8 @@ from game.casting.cast import Cast
 
 from game.directing.director import Director
 
+from game.scripting.board_creation import Board_Creation
+
 from game.services.keyboard_service import KeyboardService
 from game.services.video_service import VideoService
 
@@ -37,17 +39,17 @@ WHITE = Color(255, 255, 255)
 #DEFAULT_ARTIFACTS = 40
 MATRIX = 9
 
-INITIAL_BOARD = [
-    [7, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 3, 0, 4, 0, 0, 0, 2],
-    [1, 0, 8, 5, 0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0, 9, 5, 6, 4],
-    [0, 0, 0, 6, 0, 8, 0, 0, 0],
-    [6, 9, 7, 4, 0, 0, 8, 0, 0],
-    [0, 0, 0, 0, 0, 2, 6, 0, 9],
-    [3, 0, 0, 0, 7, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 5],
-]
+# INITIAL_BOARD = [
+#     [7, 0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 3, 0, 4, 0, 0, 0, 2],
+#     [1, 0, 8, 5, 0, 0, 0, 0, 0],
+#     [0, 0, 1, 0, 0, 9, 5, 6, 4],
+#     [0, 0, 0, 6, 0, 8, 0, 0, 0],
+#     [6, 9, 7, 4, 0, 0, 8, 0, 0],
+#     [0, 0, 0, 0, 0, 2, 6, 0, 9],
+#     [3, 0, 0, 0, 7, 0, 1, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0, 5],
+# ]
 
 
 def main():
@@ -63,9 +65,44 @@ def main():
     banner.set_position(Point(CELL_SIZE, 0))
     cast.add_actor("banners", banner)
 
+    # create the artifacts
+    board_creation = Board_Creation()
+    INITIAL_BOARD = board_creation.board_state()
+    # with open(DATA_PATH) as file:
+    #   data = file.read()
+    # messages = data.splitlines()
+
+    for n in range(MATRIX):
+        for j in range(MATRIX):
+            text = str(INITIAL_BOARD[n][j])
+
+            #x = random.randint(1, COLS - 1)
+            #y = random.randint(1, ROWS - 1)
+            position = Point(n + 1, j + 1)
+            position = position.scale(CELL_SIZE)
+
+            if INITIAL_BOARD[n][j] != 0:
+                print(INITIAL_BOARD[n][j])
+                r = (255)
+                g = (255)
+                b = (255)
+            else:
+                r = (0)
+                g = (0)
+                b = (0)
+            color = Color(r, g, b)
+
+            artifact = Artifact()
+            artifact.set_text(text)
+            artifact.set_font_size(FONT_SIZE)
+            artifact.set_color(color)
+            artifact.set_position(position)
+            # artifact.set_message(message)
+            cast.add_actor("numbers", artifact)
+
     # create the robot
-    x = int(MAX_X / 2)
-    y = int(MAX_Y / 2)
+    x = 0
+    y = 0
     position = Point(x, y)
 
     robot = Actor()
@@ -75,41 +112,11 @@ def main():
     robot.set_position(position)
     cast.add_actor("robots", robot)
 
-    # create the artifacts
-    # with open(DATA_PATH) as file:
-    #   data = file.read()
-    #  messages = data.splitlines()
-
-    for n in range(MATRIX):
-        for j in range(MATRIX):
-            if INITIAL_BOARD[n][j] != 0:
-                text = str(INITIAL_BOARD[n][j])
-
-    #text = chr(random.randint(33, 126))
-    #message = messages[n]
-
-                #x = random.randint(1, COLS - 1)
-                #y = random.randint(1, ROWS - 1)
-                position = Point(n + 1, j + 1)
-                position = position.scale(CELL_SIZE)
-
-                r = (255)
-                g = (255)
-                b = (255)
-                color = Color(r, g, b)
-
-                artifact = Artifact()
-                artifact.set_text(text)
-                artifact.set_font_size(FONT_SIZE)
-                artifact.set_color(color)
-                artifact.set_position(position)
-                # artifact.set_message(message)
-                cast.add_actor("artifacts", artifact)
-
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
-    director = Director(keyboard_service, video_service)
+    color = Color(0, 150, 250)
+    director = Director(keyboard_service, video_service, color)
     director.start_game(cast)
 
 
