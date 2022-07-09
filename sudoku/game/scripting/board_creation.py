@@ -16,7 +16,7 @@ class Board_Creation:
     
     def _remover(self, column_group):
         column = column_group
-        for i in range(1, 14):
+        for i in range(1, 18):
             #Select a random cell that is not already empty
             row = randint(0, 8)
             col = randint((column-1)*3, (column*3)-1)
