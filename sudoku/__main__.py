@@ -100,13 +100,13 @@ def main():
             # artifact.set_message(message)
             cast.add_actor("numbers", artifact)
 
-    # create the robot
+    # create the pointer
     x = 0
     y = 0
     position = Point(x, y)
 
     robot = Actor()
-    robot.set_text("#")
+    robot.set_text("0")
     robot.set_font_size(FONT_SIZE)
     robot.set_color(WHITE)
     robot.set_position(position)
