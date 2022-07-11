@@ -1,5 +1,7 @@
 from game.shared.color import Color
 from game.shared.point import Point
+from game.scripting.board_creation import Board_Creation
+from game.casting.artifact import Artifact
 
 
 class Director:
@@ -110,22 +112,36 @@ class Director:
 
         numbers = cast.get_actors("numbers")
 
-        max_x = self._video_service.get_width()
-        max_y = self._video_service.get_height()
-        robot.move_next(max_x, max_y)
-
         for artifact in numbers:
-            if robot.get_position().equals(artifact.get_position()):
-                if artifact.get_text() == '0' and self._number != "" or artifact.get_color() == self._color and self._number != "":
+            cast.remove_actor("numbers", artifact)
 
-                    artifact.set_text(self._number)
-                    artifact.set_color(self._color)
-                    robot.set_color(self._color)
+        # create the board of numbers
+        board_creation = Board_Creation()
+        INITIAL_BOARD = board_creation.board_state()
 
-                r = (34)
-                g = (234)
-                b = (85)
-                change_color = Color(r, g, b)
-                robot.set_color(change_color)
+        for n in range(9):
+            for j in range(9):
+                text = str(INITIAL_BOARD[n][j])
+
+                position = Point(n + 1, j + 1)
+                position = position.scale(50)
+
+                if INITIAL_BOARD[n][j] != 0:
+                    print(INITIAL_BOARD[n][j])
+                    r = (255)
+                    g = (255)
+                    b = (255)
+                else:
+                    r = (0)
+                    g = (0)
+                    b = (0)
+                color = Color(r, g, b)
+
+                artifact = Artifact()
+                artifact.set_text(text)
+                artifact.set_font_size(50)
+                artifact.set_color(color)
+                artifact.set_position(position)
+                cast.add_actor("numbers", artifact)
 
         self._reset_game = False

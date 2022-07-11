@@ -29,13 +29,14 @@ MAX_Y = 550
 #FONT_SIZE = 15
 CELL_SIZE = 50
 FONT_SIZE = 50
+FONT_SELECTOR = 60
 
 
 COLS = 9
 ROWS = 9
 CAPTION = "Sudoku Game"
 DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
-WHITE = Color(255, 255, 255)
+YELLOW = Color(255, 255, 0)
 #DEFAULT_ARTIFACTS = 40
 MATRIX = 9
 
@@ -61,7 +62,7 @@ def main():
     banner = Actor()
     banner.set_text("")
     banner.set_font_size(FONT_SIZE)
-    banner.set_color(WHITE)
+    banner.set_color(YELLOW)
     banner.set_position(Point(CELL_SIZE, 0))
     cast.add_actor("banners", banner)
 
@@ -107,8 +108,8 @@ def main():
 
     robot = Actor()
     robot.set_text("0")
-    robot.set_font_size(FONT_SIZE)
-    robot.set_color(WHITE)
+    robot.set_font_size(FONT_SELECTOR)
+    robot.set_color(YELLOW)
     robot.set_position(position)
     cast.add_actor("robots", robot)
 
