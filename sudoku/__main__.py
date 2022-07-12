@@ -29,6 +29,7 @@ MAX_Y = 550
 #FONT_SIZE = 15
 CELL_SIZE = 50
 FONT_SIZE = 50
+SMALL_FONT_SIZE = 14
 
 
 COLS = 9
@@ -60,7 +61,7 @@ def main():
     # create the banner
     banner = Actor()
     banner.set_text("")
-    banner.set_font_size(FONT_SIZE)
+    banner.set_font_size(SMALL_FONT_SIZE)
     banner.set_color(WHITE)
     banner.set_position(Point(CELL_SIZE, 0))
     cast.add_actor("banners", banner)
