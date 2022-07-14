@@ -37,6 +37,8 @@ ROWS = 9
 CAPTION = "Sudoku Game"
 DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
 WHITE = Color(255, 255, 255)
+YELLOW = Color(255, 255, 0)
+
 #DEFAULT_ARTIFACTS = 40
 MATRIX = 9
 
@@ -69,12 +71,15 @@ def main():
     # create the artifacts
     board_creation = Board_Creation()
     INITIAL_BOARD = board_creation.board_state()
+
     # with open(DATA_PATH) as file:
     #   data = file.read()
     # messages = data.splitlines()
 
     for n in range(MATRIX):
+
         for j in range(MATRIX):
+
             text = str(INITIAL_BOARD[n][j])
 
             #x = random.randint(1, COLS - 1)
@@ -83,7 +88,7 @@ def main():
             position = position.scale(CELL_SIZE)
 
             if INITIAL_BOARD[n][j] != 0:
-                print(INITIAL_BOARD[n][j])
+
                 r = (255)
                 g = (255)
                 b = (255)
@@ -109,7 +114,7 @@ def main():
     robot = Actor()
     robot.set_text("0")
     robot.set_font_size(FONT_SIZE)
-    robot.set_color(WHITE)
+    robot.set_color(YELLOW)
     robot.set_position(position)
     cast.add_actor("robots", robot)
 

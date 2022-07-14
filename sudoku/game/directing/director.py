@@ -66,7 +66,8 @@ class Director:
         robot = cast.get_first_actor("robots")
         numbers = cast.get_actors("numbers")
 
-        banner.set_text("Move the selector with arroes and reset the game with the 'R' Letter")
+        banner.set_text(
+            "Move the selector with arrows and reset the game with the 'R' Letter")
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
@@ -100,11 +101,6 @@ class Director:
         """
 
         robot = cast.get_first_actor("robots")
-        r = (34)
-        g = (234)
-        b = (85)
-        change_color = Color(r, g, b)
-        robot.set_color(change_color)
         x = 0
         y = 0
         position = Point(x, y)

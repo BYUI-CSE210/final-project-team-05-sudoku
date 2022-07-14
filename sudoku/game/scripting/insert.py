@@ -1,5 +1,5 @@
 
-
+"""
 class Insert():
 
     def __init__(self, physics_service, audio_service):
@@ -22,3 +22,23 @@ class Insert():
                 points = brick.get_points()
                 stats.add_points(points)
                 cast.remove_actor(BRICK_GROUP, brick)
+"""
+board = [
+    [7, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 3, 0, 4, 0, 0, 0, 2],
+    [1, 0, 8, 5, 0, 0, 0, 0, 0],
+    [0, 0, 1, 0, 0, 9, 5, 6, 4],
+    [0, 0, 0, 6, 0, 8, 0, 0, 0],
+    [6, 9, 7, 4, 0, 0, 8, 0, 0],
+    [0, 0, 0, 0, 0, 2, 6, 0, 9],
+    [3, 0, 0, 0, 7, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 5],
+]
+
+board_2 = []
+
+
+for numbers in board:
+    board_2.append(numbers)
+
+print(board_2)
